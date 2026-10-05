@@ -7396,4 +7396,205 @@ setTimeout(run,1800);setTimeout(run,5000);
 document.addEventListener('toggle',function(){soon(300);},true);
 })();
 </script>
-<script>/* addon 78: ja and bg */</script></body></html>
+<script>/* addon 78: ja and bg */</script>
+<style id="mPhoneCss">
+/* ===== addon 103: phone layout (computer layout untouched above 760px) ===== */
+html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
+/* charts: a finger can scroll the page over a chart; only the handles capture the touch */
+svg.drag{touch-action:pan-y pinch-zoom}
+svg.drag .grab,svg.drag [data-f]{touch-action:none}
+svg.drag [data-ti]{touch-action:pan-y}
+.mxs{display:block;max-width:100%;overflow-x:auto;overflow-y:hidden;-webkit-overflow-scrolling:touch;overscroll-behavior-x:contain;scrollbar-width:thin}
+.mxs>svg{display:block!important;width:var(--mxw,100%)!important;min-width:100%!important;max-width:none!important;height:auto!important;margin-left:0!important;margin-right:0!important}
+.mxs>svg.drag{touch-action:pan-x pan-y pinch-zoom}
+.mx-hint{display:none}
+
+@media (pointer:coarse){
+ /* a soft halo makes the draggable dots and handles big enough for a fingertip */
+ svg.drag circle.grab{stroke-width:18px!important;stroke-opacity:.3!important;paint-order:stroke}
+ svg.drag rect.grab{stroke-width:14px!important;stroke-opacity:.16!important;paint-order:stroke}
+}
+
+@media (max-width:760px){
+ :root{--mnav:52px}
+ body{padding-left:0!important;padding-right:0!important;padding-top:calc(var(--mnav) + 8px)!important}
+ html.tbcol body{padding-top:0!important}
+
+ /* --- top bar: one row; Chapters stays put, the tools slide sideways --- */
+ #topnav{flex-wrap:nowrap!important;justify-content:flex-start!important;align-items:center!important;gap:6px!important;height:var(--mnav);padding:0 0 0 8px!important;max-width:none!important}
+ #topnav .brand,#topnav .minis{display:none!important}
+ #topnav .navmid{flex:0 0 auto}
+ #topnav .navr{flex:1 1 auto;min-width:0;height:100%;flex-wrap:nowrap!important;justify-content:flex-start!important;gap:6px!important;overflow-x:auto;overflow-y:hidden;-webkit-overflow-scrolling:touch;overscroll-behavior-x:contain;scrollbar-width:none;padding:0 12px 0 2px;max-width:none!important}
+ #topnav .navr::-webkit-scrollbar{display:none}
+ #topnav .navr>*,#topnav #navTheme>*{flex:0 0 auto}
+ #topnav #navTheme{gap:6px!important}
+ #topnav .nb,#topnav #themeBtn,#topnav .lcur{min-height:36px;min-width:38px;padding:6px 10px!important;font-size:12.5px!important;line-height:1.1!important;display:inline-flex;align-items:center;justify-content:center}
+ #topnav .langsw{overflow:visible;border:0!important}
+ #topnav .lcur{border:1.5px solid currentColor!important}
+ #topnav #modBadge{white-space:nowrap}
+ /* menus open as a full-width sheet under the bar instead of hanging off one button */
+ #topnav .dd{position:static!important}
+ #topnav .ddp{position:absolute!important;left:8px!important;right:8px!important;top:calc(100% + 6px)!important;min-width:0!important;width:auto!important;max-width:none!important;max-height:calc(100vh - var(--mnav) - 24px);max-height:calc(100dvh - var(--mnav) - 24px);overscroll-behavior:contain}
+ #topnav:has(.ddp:not([hidden])){z-index:96!important}
+ #topnav .ddp a,#topnav .ddp .it{padding:10px 8px;font-size:14px}
+ #topnav .ddp input[type=text]{min-width:0}
+ #reel{top:calc(var(--mnav) - 1px)!important}
+ html.tbcol #reel{top:0!important}
+ .howto{top:var(--mnav)!important;padding:0 8px!important}
+ .howin{padding:18px 16px 16px!important;max-height:calc(100dvh - var(--mnav) - 16px)!important}
+ #tbShow{top:max(8px,env(safe-area-inset-top))}
+
+ /* grid columns may shrink below their content, so nothing is pushed off the right edge */
+ .two>*,.lm-grid>*,.bgrid>*,.fgrid>*,.agrid>*,.sgrid>*,.hl-wrap>*,.wdb>*{min-width:0}
+
+ /* --- pages use the full width of the phone --- */
+ article.page,.hero,#hello.page,#walk.page{margin-left:8px!important;margin-right:8px!important;max-width:calc(100vw - 16px)!important;padding-left:12px!important;padding-right:12px!important}
+ footer.site{padding-left:16px;padding-right:16px}
+ article.page .door{width:auto!important;max-width:100%!important;padding-left:18px!important;padding-right:18px!important}
+ .chart{padding-left:8px!important;padding-right:8px!important}
+ article.page p,.hero p{max-width:100%}
+
+ /* --- charts --- */
+ .mx-r{box-shadow:inset -16px 0 12px -12px rgba(120,100,105,.5)}
+ .mx-l{box-shadow:inset 16px 0 12px -12px rgba(120,100,105,.5)}
+ .mx-l.mx-r{box-shadow:inset 16px 0 12px -12px rgba(120,100,105,.5),inset -16px 0 12px -12px rgba(120,100,105,.5)}
+ .mx-hint{display:block;height:22px;text-align:right;pointer-events:none}
+ .mx-hint::after{content:"\2194";display:inline-block;margin-right:2px;padding:0 9px;border-radius:999px;background:rgba(90,35,51,.78);color:#fff;font:700 13px/20px Arial,sans-serif;opacity:0;transition:opacity .4s}
+ .mx-hint.on::after{opacity:1}
+ .ctools{opacity:1!important}
+ .ctools button{min-height:30px;padding:4px 10px!important;font-size:12px!important}
+ .chart.focus{inset:0!important;padding:92px 10px 20px!important;border-width:0!important}
+ .chart.focus::before{top:50px!important;font-size:12.5px!important;letter-spacing:.12em!important;padding:0 12px;line-height:1.3}
+ .chart.focus .ctools{top:10px!important;right:10px!important}
+ .chart.focus svg{max-height:none!important}
+ #tipx{left:8px!important;right:8px!important;top:auto!important;bottom:calc(12px + env(safe-area-inset-bottom))!important;max-width:none!important;width:auto!important;z-index:140!important;font-size:13.5px!important;text-align:center}
+
+ /* --- tables: sensible column widths, swipe sideways for the rest --- */
+ .tblwrap{overflow-x:auto;-webkit-overflow-scrolling:touch;overscroll-behavior-x:contain;max-width:100%}
+ .tblwrap>table.cmp,.tblwrap>#cmpTbl{display:table!important;width:100%!important;min-width:var(--mtw,0)!important;max-width:none!important;overflow:visible!important}
+
+ /* the flower divider no longer sits on the chart title below it */
+ article.page>.flw+.two .npvt{margin-top:26px}
+
+ /* the back story reads as one full-width column, its little illustration underneath */
+ #hello .hl-wrap,.hl-bs .hl-wrap{grid-template-columns:minmax(0,1fr)!important;gap:10px!important;padding-left:10px!important;padding-right:10px!important}
+ #hello .hl-toys{min-height:210px!important;width:100%;max-width:340px!important;overflow:visible!important;justify-self:center}
+
+ /* long formulas wrap instead of running off the card */
+ .eqs .fx{white-space:normal!important;word-break:break-word;overflow-wrap:anywhere;line-height:1.5}
+
+ /* --- overlays keep inside the screen --- */
+ #uniDir .ds{flex-wrap:wrap!important;gap:8px}
+ #uniDir .ds input{flex:1 1 100%;min-width:0}
+ #uniDir .ds .go{flex:1 1 0;min-width:0;white-space:normal}
+ #rhMan .mh{flex-wrap:wrap!important;gap:8px!important;align-items:center}
+ #rhMan .mh h2{flex:1 1 100%;min-width:0;padding-right:76px}
+ #rhMan .mh .rh-syn{flex:1 1 0;min-width:0}
+ #rhMan .mb{position:relative}
+ #rhMan .mg{grid-template-columns:minmax(0,1fr)!important}
+ #rhMan .mg>*{min-width:0}
+ #rhMan .mh .mx{position:absolute;top:20px;right:16px}
+
+ /* --- controls sized for fingers --- */
+ .tg,.seg button,.tabs [role=tab],.hl-tabs [role=tab],.iqb,.seeit,.foldb,.go,.linkish{min-height:34px}
+ .tg,.seg button{padding-top:6px!important;padding-bottom:6px!important}
+ .btn{min-height:38px}
+ .ctl{row-gap:8px!important}
+ .gq{position:relative}
+ .gq::after{content:"";position:absolute;inset:-10px}
+ .rng{flex-wrap:wrap}
+ .rng input[type=range]{width:150px;max-width:56vw}
+ input[type=range]{min-height:30px}
+ input[type=checkbox],input[type=radio]{min-width:20px;min-height:20px}
+ /* 16px inputs stop iPhones zooming the page in on focus */
+ input[type=text],input[type=search],input[type=number],input[type=password],input[type=email],input:not([type]),select,textarea{font-size:16px!important}
+ table.cmp input.ed,table.cmp select.ed{min-height:34px}
+ #cnFold,#dlgGen,#dlgNext,#dlgRe{min-height:34px}
+ .cn-map{display:inline-flex;align-items:center;min-height:32px}
+}
+
+/* phones held sideways: short screens */
+@media (max-height:500px) and (orientation:landscape){
+ .howin{max-height:calc(100dvh - 70px)!important}
+ .chart.focus{inset:0!important;padding:56px 14px 12px!important}
+ .chart.focus svg{max-height:calc(100dvh - 120px)!important}
+ #topnav .ddp{max-height:calc(100dvh - 76px)!important}
+}
+@media print{.mxs{overflow:visible}.mxs>svg{width:100%!important}.mx-hint{display:none!important}}
+</style>
+<script>
+/* addon 103: phone layout helpers. Does nothing above 760px wide. */
+(function(){
+ if(!window.matchMedia)return;
+ var mq=matchMedia('(max-width:760px)'),MINPX=8.5,busy=false;
+ function each(q,f,r){[].forEach.call((r||document).querySelectorAll(q),f);}
+ /* edge shadows: show that a strip, table or chart continues sideways */
+ function edges(el){var m=el.scrollWidth-el.clientWidth,x=el.scrollLeft;
+  el.classList.toggle('mx-l',m>4&&x>4);el.classList.toggle('mx-r',m>4&&x<m-4);if(x>24)el.classList.add('mx-used');
+  if(el.__hint)el.__hint.className='mx-hint'+(m>4&&!el.classList.contains('mx-used')?' on':'');}
+ function track(el){if(el.__mx)return edges(el);el.__mx=1;
+  el.addEventListener('scroll',function(){edges(el);},{passive:true});
+  if(window.ResizeObserver){var ro=new ResizeObserver(function(){edges(el);});ro.observe(el);if(el.firstElementChild)ro.observe(el.firstElementChild);}
+  edges(el);}
+ /* wide charts: keep the lettering readable and let the chart slide sideways */
+ function vbw(s){var v=(s.getAttribute('viewBox')||'').split(/[\s,]+/).map(Number);return v.length===4?v[2]:0;}
+ function minFont(s){var m=99;each('text',function(t){if(!(t.textContent||'').trim())return;var f=parseFloat(getComputedStyle(t).fontSize);if(f&&f<m)m=f;},s);return m===99?10:m;}
+ function need(s){return Math.round(vbw(s)*Math.min(1,MINPX/minFont(s)));}
+ function wrap(){
+  each('article.page svg[viewBox]',function(s){
+   var p=s.parentNode;if(p.classList.contains('mxs'))return;
+   var w=vbw(s);if(w<300||s.closest('.chess,#chBoard,.uni-art,.wk,[hidden]'))return;
+   var box=p.clientWidth;if(!box)return;
+   var cs=getComputedStyle(p);box-=parseFloat(cs.paddingLeft)+parseFloat(cs.paddingRight);
+   /* charts stacked in one card share a width so they line up */
+   var n=need(s);[].forEach.call(p.children,function(o){if(o!==s&&o.tagName.toLowerCase()==='svg'&&vbw(o)===w)n=Math.max(n,need(o));
+    else if(o.classList.contains('mxs')){var q=o.querySelector('svg');if(q&&vbw(q)===w)n=Math.max(n,parseFloat(o.style.getPropertyValue('--mxw'))||0);}});
+   if(n<=box*1.12)return;
+   var d=document.createElement('div');d.className='mxs';d.style.setProperty('--mxw',n+'px');
+   var hint=document.createElement('span');hint.className='mx-hint';hint.setAttribute('aria-hidden','true');
+   p.insertBefore(hint,s);p.insertBefore(d,s);d.appendChild(s);d.__hint=hint;guard(d);track(d);});}
+ /* anything another script hangs next to a wrapped chart belongs after the wrapper, once */
+ function evict(d){[].slice.call(d.children).forEach(function(c){if(c.tagName.toLowerCase()==='svg')return;
+   var f=c.getAttribute&&c.getAttribute('data-for'),dup=false;
+   if(f)[].forEach.call(d.parentNode.children,function(o){if(o!==c&&o.getAttribute&&o.getAttribute('data-for')===f&&o.className===c.className)dup=true;});
+   if(dup)d.removeChild(c);else{var a=d.nextSibling;while(a&&a.classList&&a.classList.contains('key'))a=a.nextSibling;d.parentNode.insertBefore(c,a);}});}
+ function guard(d){if(!window.MutationObserver)return;new MutationObserver(function(){evict(d);}).observe(d,{childList:true});}
+ /* tables: fit the screen when the columns allow it, otherwise a readable width that slides */
+ function tables(){
+  each('.tblwrap>table',function(t){
+   var wr=t.parentNode,box=wr.clientWidth;if(!box||!t.offsetWidth)return;
+   if(t.__mbox===box&&t.__mrows===t.rows.length)return;
+   var st=t.style,keep=st.cssText;
+   st.setProperty('display','table','important');st.setProperty('max-width','none','important');st.setProperty('min-width','0','important');
+   st.setProperty('width','max-content','important');var mx=t.offsetWidth;
+   st.setProperty('width','min-content','important');var mn=t.offsetWidth;
+   st.cssText=keep;
+   var w=mn<=box+2?0:Math.max(mn,Math.min(mx,Math.max(box,Math.round(mx*0.7)),1100));
+   if(w)st.setProperty('--mtw',w+'px');else st.removeProperty('--mtw');
+   t.__mbox=box;t.__mrows=t.rows.length;track(wr);});}
+ function unwrap(){each('.mxs',function(d){var s=d.querySelector('svg');if(s)d.parentNode.insertBefore(s,d);if(d.__hint&&d.__hint.parentNode)d.__hint.parentNode.removeChild(d.__hint);d.parentNode.removeChild(d);});
+  each('.tblwrap>table',function(t){t.style.removeProperty('--mtw');t.__mbox=0;});}
+ function apply(){if(busy)return;busy=true;
+  try{if(mq.matches){wrap();tables();var n=document.querySelector('#topnav .navr');if(n)track(n);}else{unwrap();each('.mx-l,.mx-r',function(x){x.classList.remove('mx-l','mx-r');});}}catch(e){}
+  busy=false;}
+ var tm=null;function later(){clearTimeout(tm);tm=setTimeout(apply,180);}
+ if(mq.addEventListener)mq.addEventListener('change',later);else if(mq.addListener)mq.addListener(later);
+ window.addEventListener('resize',later);window.addEventListener('orientationchange',later);
+ if(document.readyState==='complete')setTimeout(apply,60);else window.addEventListener('load',function(){setTimeout(apply,60);});
+ setTimeout(apply,1500);setTimeout(apply,4000);
+ /* sections that are built or revealed later (tabs, folded details, unlocked rooms) */
+ document.addEventListener('click',function(){if(mq.matches)later();},true);
+ document.addEventListener('toggle',function(){if(mq.matches)later();},true);
+ /* a touch that starts on a chart handle must not scroll the page (older iPhones) */
+ each('svg.drag',function(s){s.addEventListener('touchstart',function(e){var t=e.target;
+  if(t&&t.matches&&t.matches('.grab,[data-f]')&&e.cancelable)e.preventDefault();},{passive:false});});
+ /* a tapped tooltip does not linger over the page */
+ var tip=document.getElementById('tipx'),tt=null;
+ if(tip)document.addEventListener('touchend',function(){clearTimeout(tt);tt=setTimeout(function(){if(!document.querySelector('svg.dragging'))tip.hidden=true;},3500);},{passive:true});
+ /* keep the opened menu inside the screen when the bar's tools are scrolled */
+ var nav=document.getElementById('topnav');
+ if(nav)nav.addEventListener('click',function(e){var b=e.target.closest&&e.target.closest('.nb,#themeBtn,.lcur');
+  if(b&&mq.matches&&b.scrollIntoView&&b.closest('.navr'))try{b.scrollIntoView({block:'nearest',inline:'nearest'});}catch(x){}});
+})();
+</script>
+</body></html>
