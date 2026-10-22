@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en"><head><script>
+<html lang="en"><head><script>document.documentElement.classList.add("mzb");setTimeout(function(){document.documentElement.classList.remove("mzb");},20000);</script><style>html.mzb body>*:not(#intro):not(#mzLoad){visibility:hidden!important}html:not(.mzb) #mzLoad{display:none}#mzLoad{position:fixed;inset:0;z-index:5;display:grid;place-items:center;background:#FFF9F0;font:600 15px/1.4 Jost,Arial,sans-serif;color:#8E2C48;letter-spacing:.06em}#mzLoad span{animation:mzp 1.2s ease-in-out infinite alternate}@keyframes mzp{from{opacity:.35}to{opacity:1}}</style><script>
 /* lighter: shared loader + background timers rest while the tab is hidden */
 (function(){var P={};
 function note(t){try{var n=document.getElementById('mzNote');if(!n){n=document.createElement('div');n.id='mzNote';n.style.cssText='position:fixed;left:50%;bottom:22px;transform:translateX(-50%);z-index:2147483000;max-width:min(560px,92vw);background:#2B1E24;color:#fff;padding:10px 16px;border-radius:12px;font:14px/1.45 system-ui,Arial,sans-serif;box-shadow:0 8px 24px rgba(0,0,0,.3)';document.body.appendChild(n);}n.textContent=t;n.hidden=false;clearTimeout(n._h);n._h=setTimeout(function(){n.hidden=true;},t.length>60?9000:2500);}catch(e){}}
@@ -4502,7 +4502,7 @@ html body #glNote:not(#_a):not(#_b):not(#_c) .sg,html body #glNote:not(#_a):not(
 /* ===== addon 78: Japanese and Bulgarian ===== */
 html[lang="ja"] body{line-break:strict;word-break:normal;overflow-wrap:anywhere}
 html[lang="ja"] h1,html[lang="ja"] h2,html[lang="ja"] h3,html[lang="ja"] .eyebrow,html[lang="ja"] .hn-lab{letter-spacing:.04em!important}
-</style></head><body>
+</style></head><body><div id="mzLoad" aria-hidden="true"><span>✿ loading Maisie’s universe…</span></div>
 <div class="toolbar"><button type="button" id="themeBtn" title="Change the light: Blossom Morning, Golden Afternoon, Moonlit Garden, Bloomberg Terminal, Excel Sheet, Airport Terminal, Deutsche Bahn, Coding Room, Black Sea, M&A Financial District, Maisie’s Art Studio, Kölner Karneval, Slide Deck, Trans-Canada Getaway, South America Hopping, Phở in Hanoi, Ōrākei by the Ocean, Maisie’s FaceTime, Housing Help Centre, The Boardroom, Maisie’s Mixtape, German Lesson from South America, Berlin, By the Rhine, Thesis Defense Day, Process Optimization & Product Team, The Looking-Glass Chessboard, German Recycling World, Gantt Chart, Integration Work, London Double-Decker (T)">☀ Light</button></div>
 <div id="intro" aria-hidden="true"><div class="lb t"></div><div class="lb b"></div>
  <div class="ic"><div class="i1">🌸 Maisie presents 🌸</div><div class="i2">rise and shine, let’s decompose ☀</div>
@@ -7649,4 +7649,4 @@ document.addEventListener('focusin',function(e){var id=e.target&&e.target.id;if(
    w.insertBefore(dd,reset);sb.classList.add('btn');sb.title='Save the current inputs as a scenario, or load one you saved';
   }else if(!b.parentNode){nr.insertBefore(b,nr.firstChild);}}
  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',add);else add();setTimeout(add,1500);setTimeout(add,4000);})();
-</script></body></html>
+</script><script>requestAnimationFrame(function(){document.documentElement.classList.remove("mzb");});</script></body></html>
