@@ -4680,6 +4680,10 @@ html body #eggNote b.envsg{display:inline;font-size:inherit!important;color:#3B2
 html body #eggNote i.envsg{display:inline;font-size:inherit!important;color:inherit!important;font-style:italic}
 html body #eggNote a.eg-open.envsg{display:inline-block;margin-top:10px;padding:5px 12px;border:1px dashed #B0406A;border-radius:3px;color:#B0406A!important;font-size:13px!important;text-decoration:none;background:rgba(244,182,198,.25)}
 #eggNote.eg-big{top:50%;bottom:auto;width:min(560px,calc(100vw - 28px));max-height:84vh;overflow:auto;transform:translate(-50%,-50%) rotate(-.5deg);animation:none}
+.hl-scene{position:relative}
+.eg-key{position:absolute;top:6px;right:6px;z-index:3;width:30px;height:30px;padding:0;border:1px dashed rgba(176,64,106,.45);border-radius:50%;background:rgba(255,249,240,.85);font-size:15px;line-height:28px;cursor:pointer;opacity:.55;animation:egKey 3.2s ease-in-out infinite;transition:opacity .2s,transform .2s}
+.eg-key:hover,.eg-key:focus{opacity:1;transform:scale(1.15) rotate(-8deg)}
+@keyframes egKey{0%,100%{transform:rotate(0)}50%{transform:rotate(-12deg)}}
 @keyframes eggIn{from{opacity:0;transform:translateX(-50%) translateY(16px) rotate(-4deg)}to{opacity:1;transform:translateX(-50%) rotate(-1deg)}}
 </style></head><body><div id="mzLoad" aria-hidden="true"><span>✿ loading Maisie’s universe…</span></div>
 <div class="toolbar"><button type="button" id="themeBtn" title="Change the light: Blossom Morning, Golden Afternoon, Moonlit Garden, Bloomberg Terminal, Excel Sheet, Airport Terminal, Deutsche Bahn, Coding Room, Black Sea, M&A Financial District, Maisie’s Art Studio, Kölner Karneval, Slide Deck, Trans-Canada Getaway, South America Hopping, Phở in Hanoi, Ōrākei by the Ocean, Maisie’s FaceTime, Housing Help Centre, The Boardroom, Maisie’s Mixtape, German Lesson from South America, Berlin, By the Rhine, Thesis Defense Day, Process Optimization & Product Team, The Looking-Glass Chessboard, German Recycling World, Gantt Chart, Integration Work, London Double-Decker (T)">☀ Light</button></div>
@@ -7856,6 +7860,7 @@ function show(u){var f=found();
  var e=E[u];if(!e)return;if(f.indexOf(u)<0){f.push(u);try{localStorage.setItem('wl-frag',JSON.stringify(f));}catch(x){}}
  pop(e[0]+' Fragment '+e[1]+' of '+tot+' · '+e[2],e[3]+'<span class="eg-th envsg">📖 In the thesis · '+e[4]+'</span>','🗝 fragments found: '+f.length+' / '+tot+(f.length===tot?' · now raise a toast at the banquet 🥂':''));
  if(window.wlConfetti)window.wlConfetti(40);}
+document.querySelectorAll('.hl-scene').forEach(function(sc){var u=sc.getAttribute('data-u');if(!E[u]&&u!=='gb')return;var k=document.createElement('button');k.type='button';k.className='eg-key';k.title='psst… tap me';k.textContent=u==='gb'?'🥂':'🗝';k.addEventListener('click',function(ev){ev.stopPropagation();show(u);});sc.insertBefore(k,sc.firstChild);});
 N.addEventListener('click',function(ev){if(ev.target.closest('.eg-open')){ev.preventDefault();N.hidden=true;if(window.wlArchive)window.wlArchive();return;}N.hidden=true;});
 var n=0,last=null,tm=null;document.addEventListener('click',function(ev){var a=ev.target.closest&&ev.target.closest('.hl-scene .hl-art');if(!a)return;var sc=a.closest('.hl-scene'),u=sc&&sc.getAttribute('data-u');if(!E[u]&&u!=='gb')return;
  if(last!==u){n=0;last=u;}n++;clearTimeout(tm);tm=setTimeout(function(){n=0;},2000);if(n>=3){n=0;show(u);}});
