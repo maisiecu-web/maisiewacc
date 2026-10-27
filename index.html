@@ -7818,9 +7818,9 @@ document.addEventListener('focusin',function(e){var id=e.target&&e.target.id;if(
   var sb=document.getElementById('scBtn'),dd=sb&&sb.closest('.dd'),reset=document.getElementById('lmResetAll');
   var b=document.getElementById('presGo');
   if(!b){b=document.createElement('button');b.type='button';b.className='nb';b.id='presGo';b.setAttribute('translate','no');
-   b.textContent='🎞 Presentation';b.title='Straight to the presentation room (Alt+P). Asks for Maisie’s key once; tick “Remember” to skip it next time.';
+   b.textContent='🎞 Presentation';b.title='The thesis presentation, public version: answer the White Rabbit’s WACC riddle to open it.';
    b.style.cssText='background:#5A2333;color:#FFF9F0;border-color:#5A2333;font-weight:600;white-space:nowrap';
-   b.onclick=function(){if(window.maisieRoom)window.maisieRoom('deck');else{var d=document.getElementById('defense');if(d)d.scrollIntoView({behavior:'smooth'});}};}
+   b.onclick=function(){window.open('talk.html','_blank');};}
   if(dd&&nr.contains(dd)&&reset){
    if(b.parentNode!==nr||b.nextSibling!==dd)nr.insertBefore(b,dd);
    var w=document.getElementById('lmTools');if(!w){w=document.createElement('div');w.id='lmTools';w.style.cssText='display:flex;gap:8px;align-items:center;flex-wrap:wrap';reset.parentNode.insertBefore(w,reset);w.appendChild(reset);}
